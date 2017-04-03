@@ -20,7 +20,9 @@ import javax.persistence.Table;
 
 @NamedQueries({
     @NamedQuery(name = Categorie.FIND_ALL_CATEGORIE , 
-                query = "select c from Categorie c ")
+                query = "select c from Categorie c "),
+        @NamedQuery(name = Categorie.FIND_CATEGORIE_BY_NOME ,
+                query = "select c from Categorie c WHERE c.id = :nome")
 })
 
 
@@ -31,6 +33,7 @@ import javax.persistence.Table;
 public class Categorie implements Serializable{
     
     public static final String FIND_ALL_CATEGORIE = "Categorie.findAll";
+    public static final String FIND_CATEGORIE_BY_NOME = "Categorie.findCatByNome";
     
     
     @Id

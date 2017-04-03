@@ -37,13 +37,13 @@ public class SpeseService {
                 getResultList();
     }
     
-    public List <Spese> findSpeseByUsr( String usr){
+    /*public List <Spese> findSpeseByUsr( String usr){
         
         return em.createNamedQuery
                 (Spese.FIND_ALL_SPESE_BY_USER , Spese.class)
                 .setParameter("usr", usr).
                 getResultList();
-    }
+    }*/
     
     public List <Spese> findSpeseById( /*Long id*/){
         

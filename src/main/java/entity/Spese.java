@@ -29,10 +29,10 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery (name = Spese.FIND_ALL_SPESE , 
                  query = "select c from Spese c order by c.id ASC") , 
-    @NamedQuery (name = Spese.FIND_ALL_SPESE_BY_USER , 
-                 query = "select c from Spese c WHERE c.utente = :usr") , 
+    //@NamedQuery (name = Spese.FIND_ALL_SPESE_BY_USER , 
+    //             query = "select c from Spese c WHERE c.utente.username = :usr") , 
     @NamedQuery (name = Spese.FIND_ALL_SPESE_BY_ID , 
-                 query = "select c from Spese c WHERE c.utente = :id") , 
+                 query = "select c from Spese c WHERE c.utente.id = :id") , 
     
 })
 
@@ -46,7 +46,7 @@ public class Spese implements Serializable {
     
     public static final String FIND_ALL_SPESE_BY_ID = "Spese.findById";
     public static final String FIND_ALL_SPESE = "Spese.findAll";
-    public static final String FIND_ALL_SPESE_BY_USER = "Spese.findByUser";
+    //public static final String FIND_ALL_SPESE_BY_USER = "Spese.findByUser";
     
     
     
@@ -94,6 +94,8 @@ public class Spese implements Serializable {
         this.importo = importo;
         this.descrizione = descrizione;
     }
+    
+    
 
     public Long getId() {
         return id;

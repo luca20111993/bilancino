@@ -5,8 +5,9 @@
  */
 package presentation;
 
-
 import SessionStorage.SessionData;
+import entity.Categorie;
+import entity.Spese;
 import entity.Utenti;
 import java.io.IOException;
 import javax.inject.Inject;
@@ -15,18 +16,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import service.UtenteService;
+import service.SpeseService;
 
 /**
  *
  * @author tss
  */
 
-@WebServlet (urlPatterns = "/utenteLog")
-public class PresentationLogin_UtenteSrv extends HttpServlet{
-    
+@WebServlet (urlPatterns = "/AddSpesa")
+public class PresentationAggiungi_SpesaSrv extends HttpServlet{
     @Inject
-    UtenteService utenteservice;
+    SpeseService speseservice;
     
     @Inject
     SessionData utenteLogged;
@@ -35,40 +35,31 @@ public class PresentationLogin_UtenteSrv extends HttpServlet{
     public void init() throws ServletException {
         super.init(); 
         
-        System.out.println("init()....");
+        System.out.println("init().... -- Srv_Addspesa");
     }
 
     @Override
     public void destroy() {
         super.destroy(); 
-        System.out.println("destroy()....");
+        System.out.println("destroy().... -- Srv_Addspesa");
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
        
-         //vado a leggere quello che ha inserito l'utente.
-         
-       String nu = req.getParameter("nome_utente");
-       
-       String pass = req.getParameter("password");
-       
-       if(nu != null && pass != null){
-           
-       Utenti utenteL = utenteservice.findByUsrPsw( nu , pass);
-       utenteLogged.setUtenteLogged(utenteL);
-       }else{
-           System.out.println("Campo/i non compilati");
-           
-       }
-       
-       //fare verifica se c'è utente su db
-       
+        Utenti u = utenteLogged.getUtenteLogged();
+        Categorie c = new Categorie();
+        c.setId(req.getParameter("categoria"));
+        Double i = Double.parseDouble(req.getParameter("importo"));
+        String d = req.getParameter("descrizione");
         
-       resp.sendRedirect("PP_Utente_Loggato.html");
+        Spese s = new Spese();
+        s.setUtente(u);
+        s.setCategoria(c);
+        s.setImporto(i);
+        
+        
     }
-    
-    
     
     
     
