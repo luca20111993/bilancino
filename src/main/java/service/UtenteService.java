@@ -28,6 +28,15 @@ public class UtenteService {
     @PersistenceContext
     EntityManager em;
     
+    public Utenti save (Utenti dasalvare){
+        return em.merge(dasalvare);
+    }
+    
+    public void delete (Long id){
+        Utenti find = em.find(Utenti.class , id);
+        em.remove(find);
+    }
+    
     public List<Utenti> findAll(){
         return em.createNamedQuery(Utenti.FIND_ALL_UTENTI) . getResultList();
     }
@@ -39,15 +48,13 @@ public class UtenteService {
                 getSingleResult();
     }
     
-    public Utenti save (Utenti dasalvare){
-        return em.merge(dasalvare);
-    }
     
-    public void delete (Long id){
-        Utenti find = em.find(Utenti.class , id);
-        em.remove(find);
+    public Utenti findByUsrPsw (String usr , String psw){
+        return em.createNamedQuery
+                (Utenti.FIND_UTENTE_BY_USERNAME_PSW , Utenti.class).
+                setParameter("usr", usr).
+                setParameter("psw", psw).getSingleResult();
     }
-    
     
     
     

@@ -30,7 +30,10 @@ import javax.persistence.TemporalType;
     @NamedQuery (name = Spese.FIND_ALL_SPESE , 
                  query = "select c from Spese c order by c.id ASC") , 
     @NamedQuery (name = Spese.FIND_ALL_SPESE_BY_USER , 
-                 query = "select c from Spese c WHERE c.utente = :usr")
+                 query = "select c from Spese c WHERE c.utente = :usr") , 
+    @NamedQuery (name = Spese.FIND_ALL_SPESE_BY_ID , 
+                 query = "select c from Spese c WHERE c.utente = :id") , 
+    
 })
 
 
@@ -40,6 +43,8 @@ import javax.persistence.TemporalType;
 
 public class Spese implements Serializable {
     
+    
+    public static final String FIND_ALL_SPESE_BY_ID = "Spese.findById";
     public static final String FIND_ALL_SPESE = "Spese.findAll";
     public static final String FIND_ALL_SPESE_BY_USER = "Spese.findByUser";
     
@@ -70,8 +75,9 @@ public class Spese implements Serializable {
     private double importo;
 
     //Serve a dire a jpa che questpo è un campo data
+    
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "DATA_CREAZIONE")
+    @Column(name = "DATA_CREAZIONE" , nullable = false)
     private Date dataCreazione = new Date();
     
     @Column(nullable = true)

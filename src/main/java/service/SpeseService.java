@@ -5,9 +5,11 @@
  */
 package service;
 
+import SessionStorage.SessionData;
 import entity.Spese;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -24,12 +26,33 @@ public class SpeseService {
     @PersistenceContext
     EntityManager em;
     
+    @Inject
+    SessionData utenteLogged;
+    
+    
+    
     public List<Spese> findAll(){
-        return em.createNamedQuery(Spese.FIND_ALL_SPESE , Spese.class).getResultList();
+        return em.createNamedQuery
+                (Spese.FIND_ALL_SPESE , Spese.class).
+                getResultList();
     }
     
     public List <Spese> findSpeseByUsr( String usr){
-        return em.createNamedQuery(Spese.FIND_ALL_SPESE_BY_USER , Spese.class).setParameter("usr", usr).getResultList();
+        
+        return em.createNamedQuery
+                (Spese.FIND_ALL_SPESE_BY_USER , Spese.class)
+                .setParameter("usr", usr).
+                getResultList();
+    }
+    
+    public List <Spese> findSpeseById( /*Long id*/){
+        
+        Long t = utenteLogged.getUtenteLogged().getId();
+        
+        return em.createNamedQuery
+                (Spese.FIND_ALL_SPESE_BY_ID , Spese.class).
+                setParameter("id", t).
+                getResultList();
     }
     
     public Spese save (Spese dasalvare){
