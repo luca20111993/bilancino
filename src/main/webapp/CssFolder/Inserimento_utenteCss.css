@@ -50,6 +50,14 @@ and open the template in the editor.
     margin-left: -183px;
     margin-top: 15px;
 }
+#title2{
+    width: 400px;
+    position: absolute;
+    left: 50%;
+    font-size: 20px;
+    margin-left: -145px;
+    margin-top: 15px;
+}
 
 #container{
     text-align: center
