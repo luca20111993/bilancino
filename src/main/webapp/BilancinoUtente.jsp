@@ -28,7 +28,7 @@
             <c:forEach items="${speseSrv.findSpeseById()}" var="spese">
               
             <tr>
-                <td>   <c:out value="${spese.categoria}"/>  </td>
+                <td>   <c:out value="${spese.categoria.id}"/>  </td>
                 <td>   <c:out value="${spese.importo}"/>  </td>
                 <td>   <c:out value="${spese.dataCreazione}"/>  </td>
                 <td>   <c:out value="${spese.descrizione}"/>  </td>

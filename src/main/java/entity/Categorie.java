@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -38,12 +40,18 @@ public class Categorie implements Serializable{
     
     @Id
     private String id;
+    
+    
+    @ManyToOne(optional = false)
+    @JoinColumn(nullable = false)
+    private Utenti utente;
 
     public Categorie() {
     }
 
-    public Categorie(String id) {
+    public Categorie(String id, Utenti utente) {
         this.id = id;
+        this.utente = utente;
     }
 
     public String getId() {
@@ -54,10 +62,19 @@ public class Categorie implements Serializable{
         this.id = id;
     }
 
+    public Utenti getUtente() {
+        return utente;
+    }
+
+    public void setUtente(Utenti utente) {
+        this.utente = utente;
+    }
+
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 43 * hash + Objects.hashCode(this.id);
+        hash = 43 * hash + Objects.hashCode(this.utente);
         return hash;
     }
 
@@ -76,13 +93,22 @@ public class Categorie implements Serializable{
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
+        if (!Objects.equals(this.utente, other.utente)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "categorie{" + "id=" + id + '}';
+        return "Categorie{" + "id=" + id + ", utente=" + utente + '}';
     }
+
+    
+
+    
+
+    
     
     
     

@@ -16,11 +16,11 @@
         <form  action="AddSpesa" method="POST">
 
             <div>Inserire Categoria(Valida)</div>
-            <select>
-                <c:forEach items="${categoriaSrv.findAll()}" var="categoria">
+            <select name="categoria">
+                <c:forEach items="${categoriaSrv.findAll()}" var="cat">
 
 
-                    <option value="${categoria.id}">   <c:out value="${categoria.id}"/>  </option>
+                    <option value="${cat.id}" >   <c:out value="${cat.id}"/>  </option>
 
 
                 </c:forEach>

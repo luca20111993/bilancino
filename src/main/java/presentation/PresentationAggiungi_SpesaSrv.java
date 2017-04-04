@@ -48,8 +48,15 @@ public class PresentationAggiungi_SpesaSrv extends HttpServlet{
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
        
         Utenti u = utenteLogged.getUtenteLogged();
+        
+        
+        //System.out.println("SONO QUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + a);
+        
         Categorie c = new Categorie();
         c.setId(req.getParameter("categoria"));
+        c.setUtente(u);
+        
+        
         Double i = Double.parseDouble(req.getParameter("importo"));
         String d = req.getParameter("descrizione");
         
@@ -57,8 +64,10 @@ public class PresentationAggiungi_SpesaSrv extends HttpServlet{
         s.setUtente(u);
         s.setCategoria(c);
         s.setImporto(i);
+        s.setDescrizione(d);
         
-        
+        speseservice.save(s);
+        resp.sendRedirect("PP_Utente_Loggato.html");
     }
     
     
