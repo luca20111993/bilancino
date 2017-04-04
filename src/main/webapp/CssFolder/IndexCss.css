@@ -11,17 +11,50 @@ and open the template in the editor.
 #header{
  width: 800px;
  height: 70px;
- background-color: #66ffff;
+ border: 1px solid black;
  position: absolute;
  left: 50%;
  margin-left: -400px;
+ border-radius: 20px  20px 0px 0px;
 }
 
-#logreg {
+#pepeL{
+    position: absolute;
+    left: 30px;
+    top: 5px;
+    background-repeat: no-repeat;
+    
+    width: 60px;
+    height: 60px;
+    
+}
+
+#pepeR{
+    position: absolute;
+    right: 30px;
+    top: 5px;
+    background-repeat: no-repeat;
+    
+    width: 60px;
+    height: 60px;
+    transform: rotateY(180deg)
+    
+}
+/*#logreg {
     
     position: absolute;
     right: 5px;
     top: 38%
+}*/
+
+#titolo{
+    
+    font-size: larger;
+    font-style: italic;
+    width: 400px;
+    height: 20px;
+    margin: 0 auto;
+    margin-top: 24px;
 }
 
 
@@ -30,9 +63,8 @@ and open the template in the editor.
 #maindiv{
     width: 800px;
     height: 400px;
-    background-color: #b9fdfd;
     position: absolute;
-    
+    border: 1px solid black;
     
     top: 90px;
     left: 50%;
@@ -40,12 +72,70 @@ and open the template in the editor.
 }
 
 #testo {
-    width: 50%;
-    font-size: small
+    margin-top: 61px;
+    margin-left: 30px;
+    position: absolute;
+    border: 1px solid black;
+    border-radius: 10px 10px 10px 10px;
+    width: 390px;
+    font-size: small;
+    padding: 5px;
+}
+#title {
+    font-size: large;
+    font-style: italic
+}
+
+#login{
+    position: absolute;
+    border: 1px solid black;
+    
+    width: 200px;
+    height: 75px;
+    background-color: appworkspace;
+    border-radius: 20px 20px 20px 20px;
+    text-align: center;
+    line-height: 75px;
+        color: inherit;
+    right: 90px;
+    text-decoration:none;
+    top: 55px;
+    
+}
+
+#registrazione{
+    position: absolute;
+    border: 1px solid black;
+    
+    width: 200px;
+    height: 75px;
+    background-color: appworkspace;
+    border-radius: 20px 20px 20px 20px;
+    text-align: center;
+    line-height: 75px;
+    color: black;
+    right: 90px;
+    text-decoration:none;
+    top: 260px;
 }
 
 /*--- fpoooter ---*/
 
 #footer{
-    
+    border: 1px solid black;
+    position: absolute;
+    width: 800px;
+    height: 20px;
+    left: 50%;
+    margin-left: -400px;
+    top: 501px;
+    border-radius: 0px 0px 15px 15px;
 }
+
+#left{
+    float: left;
+    font-size: 10px;
+    line-height: 20px;
+    margin-left: 30px;
+}
+
