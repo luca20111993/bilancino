@@ -4,10 +4,9 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 4-apr-2017, 15.02.22
+    Created on : 5-apr-2017, 9.40.24
     Author     : tss
 */
-
 
 #header{
  width: 800px;
@@ -47,17 +46,10 @@ and open the template in the editor.
     position: absolute;
     left: 50%;
     font-size: 20px;
-    margin-left: -183px;
+    margin-left: -128px;
     margin-top: 15px;
 }
-#title2{
-    width: 400px;
-    position: absolute;
-    left: 50%;
-    font-size: 20px;
-    margin-left: -145px;
-    margin-top: 15px;
-}
+
 
 #container{
     text-align: center
@@ -68,14 +60,17 @@ and open the template in the editor.
     position: absolute;
     border: 1px solid black;
     border-radius: 10px 10px 10px 10px;
-    width: 390px;
+    width: 270px;
     font-size: small;
     padding: 5px;
-    left: 50%;
-    margin-left: -203px;
+    left: 30%;
+    margin-left: -200px;
 }
 
-
+#CTitle{
+    
+    font-size: 15px
+}
 
 #footer{
     border: 1px solid black;
@@ -94,7 +89,3 @@ and open the template in the editor.
     line-height: 20px;
     margin-left: 30px;
 }
-
-
-
-
