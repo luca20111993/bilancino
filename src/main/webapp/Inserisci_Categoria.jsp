@@ -82,7 +82,7 @@ and open the template in the editor.
                 <br><br>
                 <c:forEach items="${categoriaSrv.findAll()}" var="cat">
 
-                    <div><c:out value="${cat.id}"/></div>
+                    <div><c:out value="${cat.nome}"/> </div>
                     
 
 

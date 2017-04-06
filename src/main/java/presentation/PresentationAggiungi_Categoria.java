@@ -51,7 +51,7 @@ public class PresentationAggiungi_Categoria extends HttpServlet{
         Utenti u = utenteLogged.getUtenteLogged();
         String r = req.getParameter("categoria");
         
-        c.setId(r);
+        c.setNome(r);
         c.setUtente(u);
         
         categorieservice.save(c);

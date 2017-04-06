@@ -17,27 +17,24 @@ import javax.persistence.PersistenceContext;
  *
  * @author tss
  */
-
 @Stateless
 @Named("categoriaSrv")
 
 public class CategorieService {
+
     @PersistenceContext
     EntityManager em;
-    
-    public List<Categorie> findAll(){
+
+    public List<Categorie> findAll() {
         return em.createNamedQuery(Categorie.FIND_ALL_CATEGORIE).getResultList();
     }
-    
-     public Categorie save (Categorie dasalvare){
+
+    public Categorie save(Categorie dasalvare) {
         return em.merge(dasalvare);
     }
-     
-     
-     
-     
-     //Prima prova per cancellare una categoria.
-     /*public void daCancellare (Categorie daCancellare){
+
+    //Prima prova per cancellare una categoria.
+    /*public void daCancellare (Categorie daCancellare){
          System.out.println("Richiesta cancellazione elemento : " + daCancellare);
          
          Categorie find = em.find(Categorie.class , daCancellare.getId());
@@ -48,15 +45,20 @@ public class CategorieService {
          }
           
      }*/
-    
-     
-     
-     
-     
-    public void delete (String id ){
-        Categorie find = em.find(Categorie.class , id);
-        
+    public Categorie findByNome(String nome) {
+        return em.createNamedQuery(Categorie.FIND_CATEGORIE_BY_NOME2, Categorie.class)
+                .setParameter("nome", nome)
+                .getSingleResult();
+    }
+
+    public Categorie findById(Long id) {
+        return em.find(Categorie.class, id);
+    }
+
+    public void delete(String id) {
+        Categorie find = em.find(Categorie.class, id);
+
         em.remove(find);
-    
-}
+
+    }
 }

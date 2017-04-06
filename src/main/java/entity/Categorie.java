@@ -7,7 +7,10 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -24,7 +27,9 @@ import javax.persistence.Table;
     @NamedQuery(name = Categorie.FIND_ALL_CATEGORIE , 
                 query = "select c from Categorie c "),
         @NamedQuery(name = Categorie.FIND_CATEGORIE_BY_NOME ,
-                query = "select c from Categorie c WHERE c.id = :nome")
+                query = "select c from Categorie c WHERE c.id = :nome") , 
+        @NamedQuery(name = Categorie.FIND_CATEGORIE_BY_NOME2 ,
+                query = "select c from Categorie c WHERE c.nome = :nome")
 })
 
 
@@ -36,10 +41,14 @@ public class Categorie implements Serializable{
     
     public static final String FIND_ALL_CATEGORIE = "Categorie.findAll";
     public static final String FIND_CATEGORIE_BY_NOME = "Categorie.findCatByNome";
-    
+    public static final String FIND_CATEGORIE_BY_NOME2 = "Categorie.findCatByNome2";
     
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
+    private Long id;
+    
+    @Column(nullable = false)
+    private String nome;
     
     
     @ManyToOne(optional = false)
@@ -49,17 +58,25 @@ public class Categorie implements Serializable{
     public Categorie() {
     }
 
-    public Categorie(String id, Utenti utente) {
-        this.id = id;
+    public Categorie( String nome, Utenti utente) {
+        this.nome = nome;
         this.utente = utente;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public Utenti getUtente() {
@@ -73,8 +90,9 @@ public class Categorie implements Serializable{
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 43 * hash + Objects.hashCode(this.id);
-        hash = 43 * hash + Objects.hashCode(this.utente);
+        hash = 67 * hash + Objects.hashCode(this.id);
+        hash = 67 * hash + Objects.hashCode(this.nome);
+        hash = 67 * hash + Objects.hashCode(this.utente);
         return hash;
     }
 
@@ -90,6 +108,9 @@ public class Categorie implements Serializable{
             return false;
         }
         final Categorie other = (Categorie) obj;
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
@@ -101,9 +122,10 @@ public class Categorie implements Serializable{
 
     @Override
     public String toString() {
-        return "Categorie{" + "id=" + id + ", utente=" + utente + '}';
+        return "Categorie{" + "id=" + id + ", nome=" + nome + ", utente=" + utente + '}';
     }
 
+    
     
 
     

@@ -41,11 +41,11 @@ public class UtenteService {
         return em.createNamedQuery(Utenti.FIND_ALL_UTENTI) . getResultList();
     }
     
-    public Utenti findByUsername(String usr){
+    public List<Utenti> findByUsername(String usr){
         return em.createNamedQuery
                 (Utenti.FIND_UTENTE_BY_USERNAME, Utenti.class).
                 setParameter("usr" , usr).
-                getSingleResult();
+                getResultList();
     }
     
     
@@ -56,11 +56,11 @@ public class UtenteService {
                 setParameter("psw", psw).getSingleResult();
     }
     
-    public Utenti findByEmail(String email){
+    public List<Utenti> findByEmail(String email){
         return em.createNamedQuery
                 (Utenti.FIND_UTENTE_BY_EMAIL, Utenti.class).
                 setParameter("email" , email).
-                getSingleResult();
+                getResultList();
     }
     
     

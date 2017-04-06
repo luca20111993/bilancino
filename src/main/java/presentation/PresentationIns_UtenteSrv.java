@@ -8,6 +8,7 @@ package presentation;
 
 import entity.Utenti;
 import java.io.IOException;
+import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -55,15 +56,15 @@ public class PresentationIns_UtenteSrv extends HttpServlet{
         u.setPassword(pass);
         u.setEmail(email);
 
-        Utenti finded = utenteservice.findByUsername(nu);
-        Utenti finded2 = utenteservice.findByEmail(email);
+        List<Utenti> finded = utenteservice.findByUsername(nu);
+        List<Utenti> finded2 = utenteservice.findByEmail(email);
 
         System.out.println(finded);
         System.out.println(finded2);
 
-        if (finded == null) {
+        if (finded.isEmpty()) {
 
-            if (finded2 == null) {
+            if (finded2.isEmpty()) {
 
                 utenteservice.save(u);
 

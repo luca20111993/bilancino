@@ -34,11 +34,11 @@
                     <form  action="AddSpesa" method="POST">
 
                         <a id="CTitle">Scegliere Categoria</a> <br>
-                        <select  style="margin-top: 5px; width: 200px;text-align: center"name="categoria">
+                        <select  style="margin-top: 5px; width: 200px;text-align: center" name="categoria">
                             <c:forEach items="${categoriaSrv.findAll()}" var="cat">
 
 
-                                <option value="${cat.id}" >   <c:out value="${cat.id}"/>  </option>
+                                <option value="${cat.id}" >   <c:out value="${cat.nome}"/>  </option>
 
 
                             </c:forEach>
@@ -65,24 +65,25 @@
                     </form>
                 </div>
             </div>
+            
+            <c:set var="spe" value="${speseSrv.findLastSpesa()}" scope="page"/>
+            
+            
+                <div id="container2">
+                    <div id="testo2">
+                        <a id="CTitle">Ultima spesa registrata</a>
+                        <br><br>
+                        <c:if test="${not empty spe}" >
 
+                            <div  style="margin-top: 5px;">Categoria : <c:out value="${spe.categoria.nome}"/> </div>
+                            <div style="margin-top: 5px;">Importo : <c:out value="${spe.importo}"/> </div> 
+                            <div style="margin-top: 5px;">Data: <c:out value="${spe.dataCreazione}"/> </div>
+                            <div style="margin-top: 5px;">Descrizione : <c:out value="${spe.descrizione}"/> </div>
 
-            <div id="container2">
-            <div id="testo2">
-                
-                <a id="CTitle">Ultima spesa registrata</a>
-                <br><br>
-                <c:set var="spe" value="${speseSrv.findLastSpesa()}"/>
-
-                <div  style="margin-top: 5px;">Categoria : <c:out value="${spe.categoria.id}"/> </div>
-                <div style="margin-top: 5px;">Importo : <c:out value="${spe.importo}"/> </div> 
-                <div style="margin-top: 5px;">Data: <c:out value="${spe.dataCreazione}"/> </div>
-                <div style="margin-top: 5px;">Descrizione : <c:out value="${spe.descrizione}"/> </div>
-
-
-            </div>
-            </div>
-
+                        </c:if>
+                    </div>
+                </div>
+            
             <input type="button" class="button_active" style="position: absolute ; bottom: 10px; left: 50% ; margin-left: -81px ; font-weight: bold"  
                    value="Back To User Page" onclick="location.href = 'PP_Utente_Loggato.html';" />
             <form  action="utenteLog" method="POST">

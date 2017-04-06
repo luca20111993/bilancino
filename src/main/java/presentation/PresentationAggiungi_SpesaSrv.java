@@ -16,60 +16,62 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import service.CategorieService;
 import service.SpeseService;
 
 /**
  *
  * @author tss
  */
+@WebServlet(urlPatterns = "/AddSpesa")
+public class PresentationAggiungi_SpesaSrv extends HttpServlet {
 
-@WebServlet (urlPatterns = "/AddSpesa")
-public class PresentationAggiungi_SpesaSrv extends HttpServlet{
     @Inject
     SpeseService speseservice;
-    
+
     @Inject
     SessionData utenteLogged;
-    
+
+    @Inject
+    CategorieService categorieservice;
+
     @Override
     public void init() throws ServletException {
-        super.init(); 
-        
+        super.init();
+
         System.out.println("init().... -- Srv_Addspesa");
     }
 
     @Override
     public void destroy() {
-        super.destroy(); 
+        super.destroy();
         System.out.println("destroy().... -- Srv_Addspesa");
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       
+
         Utenti u = utenteLogged.getUtenteLogged();
-        
-        
+
         //System.out.println("SONO QUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + a);
-        
-        Categorie c = new Categorie();
-        c.setId(req.getParameter("categoria"));
-        c.setUtente(u);
-        
-        
+        String catId = req.getParameter("categoria");
+        System.out.println("---- " + catId);
+        Categorie c = categorieservice.findById(Long.parseLong(catId));
+
+        //Categorie c = new Categorie();
+        //c.setNome(req.getParameter("categoria"));
+        //c.setUtente(u);
         Double i = Double.parseDouble(req.getParameter("importo"));
         String d = req.getParameter("descrizione");
-        
+
         Spese s = new Spese();
         s.setUtente(u);
         s.setCategoria(c);
         s.setImporto(i);
         s.setDescrizione(d);
-        
+
         speseservice.save(s);
         resp.sendRedirect("Inserimento_Spesa.jsp");
     }
-    
-    
-    
+
 }
