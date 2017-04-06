@@ -32,7 +32,7 @@ and open the template in the editor.
 
 #maindiv{
     width: 800px;
-    height: 500px;
+    height: 400px;
     position: absolute;
     border: 1px solid black;
     
@@ -42,17 +42,21 @@ and open the template in the editor.
 }
 
 #title{
-    width: 400px;
+    width: 320px;
     position: absolute;
     left: 50%;
     font-size: 20px;
-    margin-left: -180px;
+    margin-left: -155px;
     margin-top: 15px;
 }
 
 
 #container{
     text-align: center
+     ;
+    overflow: auto;
+    height: 200px;
+    margin-top: 5px;
 }
 
 #testo {
@@ -60,12 +64,40 @@ and open the template in the editor.
     position: absolute;
     border: 1px solid black;
     border-radius: 10px 10px 10px 10px;
-    width: 270px;
+    width: 650px;
     font-size: small;
     padding: 5px;
-    left: 30%;
-    margin-left: -200px;
+    left: 50%;
+    margin-left: -325px;
+    
+    
 }
+
+#container table {
+    border-collapse: collapse;
+    
+}
+
+#container table td {
+    
+    padding: 2px 7px;
+}
+
+#container table th {
+    
+    padding: 2px 7px;
+}
+
+
+#container table tr {
+    border-bottom: 1px solid black;
+}
+
+#last {
+    border-left: 1px solid black;
+}
+
+
 
 #CTitle{
     
@@ -73,7 +105,6 @@ and open the template in the editor.
 }
 #SmallTitle{
     font-size: 10px;
-    margin-top: 15px;
 }
 
 
@@ -87,21 +118,9 @@ and open the template in the editor.
     padding: 5px;
     left: 85%;
     margin-left: -204px;
-    height: 363px;
+    height: 200px;
     overflow: auto;
     
-}
-
-#testo3{
-    margin-top: 260px;
-    position: absolute;
-    border: 1px solid black;
-    border-radius: 10px 10px 10px 10px;
-    width: 270px;
-    font-size: small;
-    padding: 5px;
-    left: 30%;
-    margin-left: -200px;
 }
 
 #footer{
@@ -111,7 +130,7 @@ and open the template in the editor.
     height: 20px;
     left: 50%;
     margin-left: -400px;
-    top: 601px;
+    top: 501px;
     border-radius: 0px 0px 15px 15px;
 }
 

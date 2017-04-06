@@ -4,23 +4,23 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 5-apr-2017, 9.40.24
+    Created on : 5-apr-2017, 11.35.36
     Author     : tss
 */
 
 #header{
- width: 800px;
- height: 70px;
- border: 1px solid black;
- position: absolute;
- left: 50%;
- margin-left: -400px;
- border-radius: 20px  20px 0px 0px;
+    width: 800px;
+    height: 70px;
+    border: 1px solid black;
+    position: absolute;
+    left: 50%;
+    margin-left: -400px;
+    border-radius: 20px  20px 0px 0px;
 }
 
 
 #titolo{
-    
+
     font-size: larger;
     font-style: italic;
     width: 390px;
@@ -32,10 +32,10 @@ and open the template in the editor.
 
 #maindiv{
     width: 800px;
-    height: 500px;
+    height: 400px;
     position: absolute;
     border: 1px solid black;
-    
+
     top: 90px;
     left: 50%;
     margin-left: -400px;
@@ -46,11 +46,9 @@ and open the template in the editor.
     position: absolute;
     left: 50%;
     font-size: 20px;
-    margin-left: -180px;
+    margin-left: -140px;
     margin-top: 15px;
 }
-
-
 #container{
     text-align: center
 }
@@ -67,17 +65,8 @@ and open the template in the editor.
     margin-left: -200px;
 }
 
-#CTitle{
-    
-    font-size: 15px
-}
-#SmallTitle{
-    font-size: 10px;
-    margin-top: 15px;
-}
 
-
-#testo2 {
+#testo2{
     margin-top: 61px;
     position: absolute;
     border: 1px solid black;
@@ -85,24 +74,20 @@ and open the template in the editor.
     width: 270px;
     font-size: small;
     padding: 5px;
-    left: 85%;
-    margin-left: -204px;
-    height: 363px;
-    overflow: auto;
-    
+    left: 30%;
+    margin-left: 230px
 }
 
-#testo3{
-    margin-top: 260px;
-    position: absolute;
-    border: 1px solid black;
-    border-radius: 10px 10px 10px 10px;
-    width: 270px;
-    font-size: small;
-    padding: 5px;
-    left: 30%;
-    margin-left: -200px;
+#container2{
+    text-align: center
 }
+
+#CTitle{
+    font-size: 15px
+}
+
+
+
 
 #footer{
     border: 1px solid black;
@@ -111,7 +96,7 @@ and open the template in the editor.
     height: 20px;
     left: 50%;
     margin-left: -400px;
-    top: 601px;
+    top: 501px;
     border-radius: 0px 0px 15px 15px;
 }
 

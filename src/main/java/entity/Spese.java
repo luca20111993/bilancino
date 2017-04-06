@@ -25,31 +25,54 @@ import javax.persistence.TemporalType;
  *
  * @author tss
  */
-
 @NamedQueries({
-    @NamedQuery (name = Spese.FIND_ALL_SPESE , 
-                 query = "select c from Spese c order by c.id ASC") , 
+    @NamedQuery(name = Spese.FIND_ALL_SPESE,
+            query = "select c from Spese c order by c.id ASC")
+    , 
     //@NamedQuery (name = Spese.FIND_ALL_SPESE_BY_USER , 
     //             query = "select c from Spese c WHERE c.utente.username = :usr") , 
-    @NamedQuery (name = Spese.FIND_ALL_SPESE_BY_ID , 
-                 query = "select c from Spese c WHERE c.utente.id = :id") , 
-    
+    @NamedQuery(name = Spese.FIND_ALL_SPESE_BY_ID,
+            query = "select c from Spese c WHERE c.utente.id = :id")
+    , 
+    @NamedQuery(name = Spese.FIND_ALL_SPESE_7_GG,
+            query = "SELECT c FROM Spese c WHERE c.dataCreazione BETWEEN :dat2 AND :dat")
+    ,
+    @NamedQuery(name = Spese.FIND_ALL_SPESE_1_MESE,
+            query = "SELECT c FROM Spese c WHERE c.dataCreazione BETWEEN :dat2 AND :dat")
+    ,
+    @NamedQuery(name = Spese.FIND_ALL_BY_CATEGORY,
+            query = "SELECT c FROM Spese c WHERE c.categoria = :cat")
+    ,
+    @NamedQuery(name = Spese.FIND_ALL_BY_CATEGORY_AND_7GG,
+            query = "SELECT c FROM Spese c WHERE c.categoria = :cat AND c.dataCreazione BETWEEN :dat2 AND :dat")
+    ,
+    @NamedQuery(name = Spese.FIND_ALL_BY_CATEGORY_AND_1_MESE,
+            query = "SELECT c FROM Spese c WHERE c.categoria = :cat AND c.dataCreazione BETWEEN :dat2 AND :dat")
+    ,
+    @NamedQuery(name = Spese.FIND_LAST_ID_SPESA,
+            query = "select MAX( c.id ) from Spese c where c.utente = :ut")
+    ,
+    @NamedQuery(name = Spese.FIND_LAST_SPESA,
+            query = "select c from Spese c where  c.id="
+            + "(select MAX(e.id) from Spese e where e.utente = :ut)")
 })
-
-
 
 @Entity
 @Table(name = "t_spese")
 
 public class Spese implements Serializable {
-    
-    
+
+    public static final String FIND_LAST_ID_SPESA = "Spese.findLastIdSpesa";
+    public static final String FIND_LAST_SPESA = "Spese.findLastSpesa";
     public static final String FIND_ALL_SPESE_BY_ID = "Spese.findById";
     public static final String FIND_ALL_SPESE = "Spese.findAll";
+    public static final String FIND_ALL_SPESE_7_GG = "Spese.find7Gg";
+    public static final String FIND_ALL_SPESE_1_MESE = "Spese.find1Mese";
+    public static final String FIND_ALL_BY_CATEGORY = "Spese.findByCategoria";
+    public static final String FIND_ALL_BY_CATEGORY_AND_7GG = "Spese.findByCategoria&7Gg";
+    public static final String FIND_ALL_BY_CATEGORY_AND_1_MESE = "Spese.findByCategoria&1Mese";
+    
     //public static final String FIND_ALL_SPESE_BY_USER = "Spese.findByUser";
-    
-    
-    
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -70,32 +93,27 @@ public class Spese implements Serializable {
     @ManyToOne(optional = false)
     @JoinColumn(nullable = false)
     private Categorie categoria;
-    
+
     @Column(nullable = false)
     private double importo;
 
     //Serve a dire a jpa che questpo è un campo data
-    
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "DATA_CREAZIONE" , nullable = false)
+    @Column(name = "DATA_CREAZIONE", nullable = false)
     private Date dataCreazione = new Date();
-    
+
     @Column(nullable = true)
     private String descrizione;
 
-    
     public Spese() {
     }
-    
-    
+
     public Spese(Utenti utente, Categorie categoria, double importo, String descrizione) {
         this.utente = utente;
         this.categoria = categoria;
         this.importo = importo;
         this.descrizione = descrizione;
     }
-    
-    
 
     public Long getId() {
         return id;
@@ -194,14 +212,5 @@ public class Spese implements Serializable {
     public String toString() {
         return "spese{" + "id=" + id + ", utente=" + utente + ", categoria=" + categoria + ", importo=" + importo + ", dataCreazione=" + dataCreazione + ", descrizione=" + descrizione + '}';
     }
-
-    
-
-    
-    
-
-
-
-
 
 }

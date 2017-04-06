@@ -5,7 +5,6 @@
  */
 package presentation;
 
-
 import SessionStorage.SessionData;
 import entity.Utenti;
 import java.io.IOException;
@@ -21,55 +20,64 @@ import service.UtenteService;
  *
  * @author tss
  */
+@WebServlet(urlPatterns = "/utenteLog")
+public class PresentationLogin_UtenteSrv extends HttpServlet {
 
-@WebServlet (urlPatterns = "/utenteLog")
-public class PresentationLogin_UtenteSrv extends HttpServlet{
-    
     @Inject
     UtenteService utenteservice;
-    
+
     @Inject
     SessionData utenteLogged;
-    
+
     @Override
     public void init() throws ServletException {
-        super.init(); 
-        
+        super.init();
+
         System.out.println("init()....");
     }
 
     @Override
     public void destroy() {
-        super.destroy(); 
+        super.destroy();
         System.out.println("destroy()....");
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       
-         //vado a leggere quello che ha inserito l'utente.
-         
-       String nu = req.getParameter("nome_utente");
-       
-       String pass = req.getParameter("password");
-       
-       if(nu != null && pass != null){
-           
-       Utenti utenteL = utenteservice.findByUsrPsw( nu , pass);
-       utenteLogged.setUtenteLogged(utenteL);
-       }else{
-           System.out.println("Campo/i non compilati");
-           
-       }
-       
-       //fare verifica se c'è utente su db
-       
-        
-       resp.sendRedirect("PP_Utente_Loggato.html");
+
+        //vado a leggere quello che ha inserito l'utente.
+        if (utenteLogged.getUtenteLogged() == null/* || utenteLogged.isLogged() == false*/) {
+
+            String nu = req.getParameter("nome_utente");
+
+            String pass = req.getParameter("password");
+
+            if (nu != null && pass != null) {
+
+                Utenti utenteL = utenteservice.findByUsrPsw(nu, pass);
+                utenteLogged.setUtenteLogged(utenteL);
+                //utenteLogged.setLogged(true);
+
+                System.out.println("Setting utente = " + utenteLogged.getUtenteLogged() /*+ " - " + utenteLogged.isLogged()*/);
+
+            } else {
+                System.out.println("Campo/i non compilati");
+            resp.sendRedirect("workinprogress.html");
+
+            }
+
+            //fare verifica se c'è utente su db
+            resp.sendRedirect("PP_Utente_Loggato.html");
+        } else {
+
+            //utenteLogged.setLogged(false);
+            utenteLogged.setUtenteLogged(null);
+
+            System.out.println("Fine sessione utente " + utenteLogged.getUtenteLogged() /*+ " Sessione " + utenteLogged.isLogged()*/);
+
+            resp.sendRedirect("index.html");
+
+        }
+
     }
-    
-    
-    
-    
-    
 }

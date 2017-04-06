@@ -56,7 +56,7 @@ public class PresentationAggiungi_Categoria extends HttpServlet{
         
         categorieservice.save(c);
         
-        resp.sendRedirect("PP_Utente_Loggato.html");
+        resp.sendRedirect("Inserisci_Categoria.jsp");
     }
     
     

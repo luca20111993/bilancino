@@ -43,23 +43,47 @@ public class PresentationIns_UtenteSrv extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
        
-         //vado a leggere quello che ha inserito l'utente.
-         
-       String nu = req.getParameter("nome_utente");
-       
-       String pass = req.getParameter("password");
-       
-       String email = req.getParameter("email");
-       
-       Utenti u = new Utenti();
-       u.setUsername(nu);
-       u.setPassword(pass);
-       u.setEmail(email);
-       
-       utenteservice.save(u);
-       
-       resp.sendRedirect("index.html");
-        
+        //vado a leggere quello che ha inserito l'utente.
+        String nu = req.getParameter("nome_utente");
+
+        String pass = req.getParameter("password");
+
+        String email = req.getParameter("email");
+
+        Utenti u = new Utenti();
+        u.setUsername(nu);
+        u.setPassword(pass);
+        u.setEmail(email);
+
+        Utenti finded = utenteservice.findByUsername(nu);
+        Utenti finded2 = utenteservice.findByEmail(email);
+
+        System.out.println(finded);
+        System.out.println(finded2);
+
+        if (finded == null) {
+
+            if (finded2 == null) {
+
+                utenteservice.save(u);
+
+                resp.sendRedirect("index.html");
+            } else {
+                String error = "Email già presente nel DB";
+                System.out.println(error);
+                /*//resp.sendError(0, error);
+                resp.addHeader("errore", "<html><body><div>Email già presente nel DB</div><br><a href=\"index.html\">Torna alla Home</a></body></html>");
+                doGet(req, resp);*/
+                resp.sendRedirect("workinprogress.html");
+            }
+
+        } else {
+
+            System.out.println("Nome utente già presente nel DB");            
+            /*resp.addHeader("errore", "<html><body><div>Nome utente già presente nel DB</div><br><a href=\"index.html\">Torna alla Home</a></body></html>");
+            doGet(req, resp);*/
+            resp.sendRedirect("workinprogress.html");
+        }
     }
     
     

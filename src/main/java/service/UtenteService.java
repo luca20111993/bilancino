@@ -56,6 +56,12 @@ public class UtenteService {
                 setParameter("psw", psw).getSingleResult();
     }
     
+    public Utenti findByEmail(String email){
+        return em.createNamedQuery
+                (Utenti.FIND_UTENTE_BY_EMAIL, Utenti.class).
+                setParameter("email" , email).
+                getSingleResult();
+    }
     
     
     

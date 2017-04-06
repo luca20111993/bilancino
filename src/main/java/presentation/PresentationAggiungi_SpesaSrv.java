@@ -67,7 +67,7 @@ public class PresentationAggiungi_SpesaSrv extends HttpServlet{
         s.setDescrizione(d);
         
         speseservice.save(s);
-        resp.sendRedirect("PP_Utente_Loggato.html");
+        resp.sendRedirect("Inserimento_Spesa.jsp");
     }
     
     

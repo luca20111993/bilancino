@@ -6,6 +6,7 @@
 package service;
 
 import entity.Categorie;
+import entity.Utenti;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Named;
@@ -31,9 +32,30 @@ public class CategorieService {
      public Categorie save (Categorie dasalvare){
         return em.merge(dasalvare);
     }
+     
+     
+     
+     
+     //Prima prova per cancellare una categoria.
+     /*public void daCancellare (Categorie daCancellare){
+         System.out.println("Richiesta cancellazione elemento : " + daCancellare);
+         
+         Categorie find = em.find(Categorie.class , daCancellare.getId());
+         if(find != null ){
+         em.remove(daCancellare);
+         } else {
+             System.out.println("Elemento non trovato");
+         }
+          
+     }*/
     
-    public void delete (String id){
+     
+     
+     
+     
+    public void delete (String id ){
         Categorie find = em.find(Categorie.class , id);
+        
         em.remove(find);
     
 }
