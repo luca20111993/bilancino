@@ -5,10 +5,12 @@
  */
 package service;
 
+import SessionStorage.SessionData;
 import entity.Categorie;
 import entity.Utenti;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,6 +27,8 @@ public class CategorieService {
     @PersistenceContext
     EntityManager em;
 
+    @Inject
+    SessionData utenteloggato;
     public List<Categorie> findAll() {
         return em.createNamedQuery(Categorie.FIND_ALL_CATEGORIE).getResultList();
     }
@@ -49,6 +53,14 @@ public class CategorieService {
         return em.createNamedQuery(Categorie.FIND_CATEGORIE_BY_NOME2, Categorie.class)
                 .setParameter("nome", nome)
                 .getSingleResult();
+    }
+    
+    public List <Categorie>findByUt(){
+        Utenti ut = utenteloggato.getUtenteLogged();
+        
+        return em.createNamedQuery(Categorie.FIND_CATEGORIE_BYUTENTE , Categorie.class).
+                setParameter("ut", ut).getResultList();
+    
     }
 
     public Categorie findById(Long id) {

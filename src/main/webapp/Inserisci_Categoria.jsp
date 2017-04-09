@@ -80,7 +80,7 @@ and open the template in the editor.
                 <br>
                 <a id="CTitle">Lista delle categorie già esistenti</a>
                 <br><br>
-                <c:forEach items="${categoriaSrv.findAll()}" var="cat">
+                <c:forEach items="${categoriaSrv.findByUt()}" var="cat">
 
                     <div><c:out value="${cat.nome}"/> </div>
                     

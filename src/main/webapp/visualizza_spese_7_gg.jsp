@@ -50,7 +50,7 @@
             <c:forEach items="${speseSrv.findSpese7Gg()}" var="spese">
               
             <tr>
-                <td id="first">   <c:out value="${spese.categoria.id}"/>  </td>
+                <td id="first">   <c:out value="${spese.categoria.nome}"/>  </td>
                 <td id="last">   <c:out value="${spese.importo}"/>  </td>
                 <td id="last">   <c:out value="${spese.dataCreazione}"/>  </td>
                 <td id="last">   <c:out value="${spese.descrizione}"/>  </td>
@@ -59,6 +59,8 @@
             </c:forEach>
         </table>
                 </div>
+                
+                
             </div>
             
             
@@ -77,34 +79,5 @@
             <a id="left">Sito realizzato da Fabio & Luca presso Ghiglieno Digital (Ivrea)</a>
 
         </div>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-       
-        
-        
-        
-        
     </body>
 </html>

@@ -50,7 +50,7 @@
             <c:forEach items="${speseSrv.findSpese1Mese()}" var="spese">
               
             <tr>
-                <td >   <c:out value="${spese.categoria.id}"/>  </td>
+                <td >   <c:out value="${spese.categoria.nome}"/>  </td>
                 <td id="last">   <c:out value="${spese.importo}"/>  </td>
                 <td id="last">   <c:out value="${spese.dataCreazione}"/>  </td>
                 <td id="last">   <c:out value="${spese.descrizione}"/>  </td>

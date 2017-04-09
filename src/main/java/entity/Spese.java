@@ -35,33 +35,51 @@ import javax.persistence.TemporalType;
             query = "select c from Spese c WHERE c.utente.id = :id")
     , 
     @NamedQuery(name = Spese.FIND_ALL_SPESE_7_GG,
-            query = "SELECT c FROM Spese c WHERE c.dataCreazione BETWEEN :dat2 AND :dat")
+            query = "SELECT c FROM Spese c WHERE c.dataCreazione BETWEEN :dat2 AND :dat AND c.utente = :ut")
     ,
     @NamedQuery(name = Spese.FIND_ALL_SPESE_1_MESE,
-            query = "SELECT c FROM Spese c WHERE c.dataCreazione BETWEEN :dat2 AND :dat")
+            query = "SELECT c FROM Spese c WHERE c.dataCreazione BETWEEN :dat2 AND :dat AND c.utente = :ut ")
     ,
     @NamedQuery(name = Spese.FIND_ALL_BY_CATEGORY,
-            query = "SELECT c FROM Spese c WHERE c.categoria = :cat")
+            query = "SELECT c FROM Spese c WHERE c.categoria = :cat AND c.utente = :ut" )
     ,
     @NamedQuery(name = Spese.FIND_ALL_BY_CATEGORY_AND_7GG,
-            query = "SELECT c FROM Spese c WHERE c.categoria = :cat AND c.dataCreazione BETWEEN :dat2 AND :dat")
+            query = "SELECT c FROM Spese c WHERE c.categoria = :cat AND c.utente = :ut AND  c.dataCreazione BETWEEN :dat2 AND :dat ")
     ,
     @NamedQuery(name = Spese.FIND_ALL_BY_CATEGORY_AND_1_MESE,
-            query = "SELECT c FROM Spese c WHERE c.categoria = :cat AND c.dataCreazione BETWEEN :dat2 AND :dat")
+            query = "SELECT c FROM Spese c WHERE c.categoria = :cat AND c.utente = :ut AND c.dataCreazione BETWEEN :dat2 AND :dat")
     ,
     @NamedQuery(name = Spese.FIND_LAST_ID_SPESA,
             query = "select MAX( c.id ) from Spese c where c.utente = :ut")
     ,
     @NamedQuery(name = Spese.FIND_LAST_SPESA,
             query = "select c from Spese c where  c.id="
-            + "(select MAX(e.id) from Spese e where e.utente = :ut)")
+            + "(select MAX(e.id) from Spese e where e.utente = :ut)")  ,
+    
+    @NamedQuery(name = Spese.SUM_ALL_SPESE_7_GG,
+            query = "SELECT SUM(c.importo) FROM Spese c WHERE c.dataCreazione BETWEEN :dat2 AND :dat AND c.utente = :ut")
+    /*,
+    @NamedQuery(name = Spese.SUM_ALL_SPESE_1_MESE,
+            query = "SELECT SUM(c.importo) FROM Spese c WHERE c.dataCreazione BETWEEN :dat2 AND :dat AND c.utente = :ut")
+    ,
+    @NamedQuery(name = Spese.SUM_ALL_BY_CATEGORY,
+            query = "SELECT SUM(c.importo) FROM Spese c WHERE c.categoria = :cat AND c.utente = :ut" )
+    ,
+    @NamedQuery(name = Spese.SUM_ALL_BY_CATEGORY_AND_7GG,
+            query = "SELECT SUM(c.importo) FROM Spese c WHERE c.categoria = :cat AND c.utente = :ut AND  c.dataCreazione BETWEEN :dat2 AND :dat ")
+    ,
+    @NamedQuery(name = Spese.SUM_ALL_BY_CATEGORY_AND_1_MESE,
+            query = "SELECT SUM(c.importo) FROM Spese c WHERE c.categoria = :cat AND c.utente = :ut AND c.dataCreazione BETWEEN :dat2 AND :dat")
+    */
+    
 })
 
 @Entity
 @Table(name = "t_spese")
 
 public class Spese implements Serializable {
-
+    
+    
     public static final String FIND_LAST_ID_SPESA = "Spese.findLastIdSpesa";
     public static final String FIND_LAST_SPESA = "Spese.findLastSpesa";
     public static final String FIND_ALL_SPESE_BY_ID = "Spese.findById";
@@ -71,6 +89,13 @@ public class Spese implements Serializable {
     public static final String FIND_ALL_BY_CATEGORY = "Spese.findByCategoria";
     public static final String FIND_ALL_BY_CATEGORY_AND_7GG = "Spese.findByCategoria&7Gg";
     public static final String FIND_ALL_BY_CATEGORY_AND_1_MESE = "Spese.findByCategoria&1Mese";
+    
+    //Per fare i totali delle spese
+    public static final String SUM_ALL_SPESE_7_GG = "Spese.SUM7Gg";
+    public static final String SUM_ALL_SPESE_1_MESE = "Spese.SUM1Mese";
+    public static final String SUM_ALL_BY_CATEGORY = "Spese.SUMbyCategoria";
+    public static final String SUM_ALL_BY_CATEGORY_AND_7GG = "Spese.SUMbyCategoria&7Gg";
+    public static final String SUM_ALL_BY_CATEGORY_AND_1_MESE = "Spese.SUMbyCategoria&1Mese";
     
     //public static final String FIND_ALL_SPESE_BY_USER = "Spese.findByUser";
 

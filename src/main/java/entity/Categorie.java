@@ -29,7 +29,9 @@ import javax.persistence.Table;
         @NamedQuery(name = Categorie.FIND_CATEGORIE_BY_NOME ,
                 query = "select c from Categorie c WHERE c.id = :nome") , 
         @NamedQuery(name = Categorie.FIND_CATEGORIE_BY_NOME2 ,
-                query = "select c from Categorie c WHERE c.nome = :nome")
+                query = "select c from Categorie c WHERE c.nome = :nome") , 
+        @NamedQuery(name = Categorie.FIND_CATEGORIE_BYUTENTE ,
+                query = "select c from Categorie c where c.utente = :ut")
 })
 
 
@@ -42,6 +44,7 @@ public class Categorie implements Serializable{
     public static final String FIND_ALL_CATEGORIE = "Categorie.findAll";
     public static final String FIND_CATEGORIE_BY_NOME = "Categorie.findCatByNome";
     public static final String FIND_CATEGORIE_BY_NOME2 = "Categorie.findCatByNome2";
+    public static final String FIND_CATEGORIE_BYUTENTE = "Categorie.findCatByUt";
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
